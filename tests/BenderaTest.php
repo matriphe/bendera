@@ -17,23 +17,23 @@ class BenderaTest extends TestCase
             'ID mapped correctly' => [
                 'aliases' => [],
                 'country' => 'ID',
-                'emoji' => '🇮🇩'
+                'emoji' => '🇮🇩',
             ],
             'UK mapped to UK code' => [
                 'aliases' => [],
                 'country' => 'UK',
-                'emoji' => '🇺🇰'
+                'emoji' => '🇺🇰',
             ],
             'UK mapped to GB' => [
                 'aliases' => ['uk' => 'gb'],
                 'country' => 'UK',
-                'emoji' => '🇬🇧'
+                'emoji' => '🇬🇧',
             ],
             'invalid country return null' => [
                 'aliases' => [],
                 'country' => 'XYZ',
-                'emoji' => null
-            ]
+                'emoji' => null,
+            ],
         ];
     }
 

@@ -17,23 +17,23 @@ class FacadeTest extends TestCase
         return [
             'ID mapped correctly' => [
                 'country' => 'ID',
-                'emoji' => '🇮🇩'
+                'emoji' => '🇮🇩',
             ],
             'GB mapped to GB' => [
                 'country' => 'GB',
-                'emoji' => '🇬🇧'
+                'emoji' => '🇬🇧',
             ],
             'invalid country return null' => [
                 'country' => 'XYZ',
-                'emoji' => null
+                'emoji' => null,
             ],
             'EN mapped to GB' => [
                 'country' => 'en',
-                'emoji' => '🇬🇧'
+                'emoji' => '🇬🇧',
             ],
             'UK mapped to GB' => [
                 'country' => 'UK',
-                'emoji' => '🇬🇧'
+                'emoji' => '🇬🇧',
             ],
         ];
     }
