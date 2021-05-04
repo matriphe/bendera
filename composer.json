@@ -29,6 +29,16 @@
             "Matriphe\\Bendera\\Tests\\": "tests/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Matriphe\\Bendera\\BenderaServiceProvider"
+            ],
+            "aliases": {
+                "Bendera": "Matriphe\\Bendera\\BenderaFacade"
+            }
+        }
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
