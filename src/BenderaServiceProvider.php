@@ -54,7 +54,7 @@ class BenderaServiceProvider extends ServiceProvider
      */
     protected function registerSingletons()
     {
-        $this->app->singleton(BenderaInterface::class, static function () {
+        $this->app->singleton(BenderaContract::class, static function () {
             return new Bendera(new CountryFlag(config('bendera.aliases')));
         });
     }

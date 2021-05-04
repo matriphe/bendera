@@ -4,7 +4,7 @@ namespace Matriphe\Bendera;
 
 use Stidges\CountryFlags\CountryFlag;
 
-class Bendera implements BenderaInterface
+class Bendera implements BenderaContract
 {
     /**
      * @var CountryFlag

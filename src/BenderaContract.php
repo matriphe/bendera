@@ -2,7 +2,7 @@
 
 namespace Matriphe\Bendera;
 
-interface BenderaInterface
+interface BenderaContract
 {
     /**
      * @param string $countryCode
