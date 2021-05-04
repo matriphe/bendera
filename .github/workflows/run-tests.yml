@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   run-tests:
-    name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php-versions }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
+    name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
