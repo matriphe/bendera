@@ -8,7 +8,8 @@
         {
             "name": "Muhammad Zamroni",
             "email": "halo@matriphe.com",
-            "homepage": "https://matriphe.id"
+            "homepage": "https://matriphe.id",
+            "role": "Developer"
         }
     ],
     "require": {
