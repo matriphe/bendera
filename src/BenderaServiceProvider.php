@@ -57,5 +57,16 @@ class BenderaServiceProvider extends ServiceProvider
         $this->app->singleton(BenderaInterface::class, static function () {
             return new Bendera(new CountryFlag(config('bendera.aliases')));
         });
+        $this->app->alias(BenderaInterface::class, 'bendera');
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return [BenderaInterface::class, 'bendera'];
     }
 }
