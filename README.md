@@ -1,6 +1,8 @@
 # Bendera
 
 [![Build](https://github.com/matriphe/bendera/actions/workflows/php.yml/badge.svg)](https://github.com/matriphe/bendera/actions/workflows/php.yml)
+[![Latest Stable Version](https://poser.pugx.org/matriphe/bendera/v)](//packagist.org/packages/matriphe/bendera)
+[![Total Downloads](https://poser.pugx.org/matriphe/bendera/downloads)](//packagist.org/packages/matriphe/bendera)
 
 A Laravel package to convert country code (ISO 3166-1 alpha-2) to corresponding flag emoji.
 
