@@ -13,6 +13,6 @@ class BenderaFacade extends Facade
      */
     protected static function getFacadeAccessor(): string
     {
-        return Bendera::class;
+        return BenderaFactory::class;
     }
 }

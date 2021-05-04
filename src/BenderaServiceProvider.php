@@ -25,8 +25,6 @@ class BenderaServiceProvider extends PackageServiceProvider
             return new CountryFlag(config('bendera.aliases'));
         });
 
-        $this->app->singleton(BenderaContract::class, static function ($app) {
-            return new Bendera($app[CountryFlag::class]);
-        });
+        $this->app->singleton(BenderaContract::class, BenderaFactory::class);
     }
 }
