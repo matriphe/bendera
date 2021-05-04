@@ -12,7 +12,7 @@ class Bendera implements BenderaContract
     protected $countryFlag;
 
     /**
-     * @param CountryFlag $countryFlag
+     * @param  CountryFlag  $countryFlag
      */
     public function __construct(CountryFlag $countryFlag)
     {
@@ -23,7 +23,7 @@ class Bendera implements BenderaContract
      * @param  string  $countryCode
      * @return string|null
      */
-    public function emoji($countryCode)
+    public function emoji(string $countryCode): ?string
     {
         try {
             return $this->countryFlag->get($countryCode);

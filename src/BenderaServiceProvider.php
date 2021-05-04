@@ -2,60 +2,31 @@
 
 namespace Matriphe\Bendera;
 
-use Illuminate\Support\ServiceProvider;
-use Laravel\Lumen\Application as LumenApplication;
-use Illuminate\Foundation\Application as LaravelApplication;
+use Spatie\LaravelPackageTools\Package;
+use Spatie\LaravelPackageTools\PackageServiceProvider;
 use Stidges\CountryFlags\CountryFlag;
 
-class BenderaServiceProvider extends ServiceProvider
+class BenderaServiceProvider extends PackageServiceProvider
 {
     /**
-     * Register the service provider.
-     *
-     * @return void
+     * @param  Package  $package
      */
-    public function register()
+    public function configurePackage(Package $package): void
     {
-        $this->configure();
-        $this->offerPublishing();
-        $this->registerSingletons();
+        $package->name('bendera')->hasConfigFile();
     }
 
     /**
-     * Setup the configuration.
-     *
      * @return void
      */
-    protected function configure()
+    public function packageRegistered()
     {
-        $this->mergeConfigFrom(__DIR__ . '/config/bendera.php', 'bendera');
-    }
+        $this->app->singleton(CountryFlag::class, static function () {
+            return new CountryFlag(config('bendera.aliases'));
+        });
 
-    /**
-     * Setup the resource publishing groups.
-     *
-     * @return void
-     */
-    protected function offerPublishing()
-    {
-        if ($this->app instanceof LaravelApplication && $this->app->runningInConsole()) {
-            $this->publishes([
-                __DIR__.'/config/bendera.php' => config_path('bendera.php'),
-            ], 'bendera');
-        } elseif ($this->app instanceof LumenApplication) {
-            $this->app->configure('bendera');
-        }
-    }
-
-    /**
-     * Register the singletons in the container.
-     *
-     * @return void
-     */
-    protected function registerSingletons()
-    {
-        $this->app->singleton(BenderaContract::class, static function () {
-            return new Bendera(new CountryFlag(config('bendera.aliases')));
+        $this->app->singleton(BenderaContract::class, static function ($app) {
+            return new Bendera($app[CountryFlag::class]);
         });
     }
 }

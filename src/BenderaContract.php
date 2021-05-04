@@ -5,8 +5,8 @@ namespace Matriphe\Bendera;
 interface BenderaContract
 {
     /**
-     * @param string $countryCode
+     * @param  string  $countryCode
      * @return string|null
      */
-    public function emoji($countryCode);
+    public function emoji(string $countryCode): ?string;
 }
