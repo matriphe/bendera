@@ -69,6 +69,7 @@ Contributions are welcome via Pull Requests on Github.
 ## Credits
 
 - [Stidges](https://github.com/stidges) for his initial Country Flags package.
+- [Spatie](https://github.com/spatie) for their awesome packages.
 
 ## License
 
