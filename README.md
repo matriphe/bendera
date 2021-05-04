@@ -42,6 +42,10 @@ You can use the Facade `Bendera` to get the emoji.
 
 ```php
 Bendera::emoji('id'); // will return 🇮🇩
+Bendera::emoji('en'); // will return 🇬🇧
+Bendera::emoji('uk'); // will return 🇬🇧
+Bendera::emoji('GB'); // will return 🇬🇧
+Bendera::emoji('XYZ'); // will return null
 ```
 
 For invalid country code, it will return `null`;
