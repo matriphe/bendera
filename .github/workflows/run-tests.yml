@@ -1,0 +1,47 @@
+name: Run Tests
+
+on: [push, pull_request]
+
+jobs:
+  run-tests:
+    name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php-versions }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [7.4, 8.0]
+        laravel: [7.*, 8.*]
+        dependency-version: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 8.*
+            testbench: 6.*
+          - laravel: 7.*
+            testbench: 5.*
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: ${{ matrix.php }}
+        coverage: none
+
+    - name: Cache composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+
+    - name: Install dependencies
+      run: |
+        composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+        composer install --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+    - name: Execute tests
+      run: composer test
