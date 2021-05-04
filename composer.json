@@ -1,14 +1,8 @@
 {
     "name": "matriphe/bendera",
-    "description": "\"Convert country code (ISO 3166-1 alpha-2) to the corresponding flag emoji\"",
+    "description": "Convert country code (ISO 3166-1 alpha-2) to the corresponding flag emoji",
+    "keywords": ["laravel", "flag", "country", "iso-3166-1 alpha-2", "converter", "emoji"],
     "type": "library",
-    "require": {
-        "stidges/country-flags": "^2.0",
-        "illuminate/support": "^5.5||^6.0||^7.0||^8.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^8.5||^9.0"
-    },
     "license": "MIT",
     "authors": [
         {
@@ -17,6 +11,23 @@
             "homepage": "https://matriphe.id"
         }
     ],
+    "require": {
+        "stidges/country-flags": "^2.0",
+        "illuminate/support": "^5.5||^6.0||^7.0||^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5||^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Matriphe\\Bendera\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Matriphe\\Bendera\\Tests\\": "tests/"
+        }
+    },
     "config": {
         "preferred-install": "dist",
         "sort-packages": true
