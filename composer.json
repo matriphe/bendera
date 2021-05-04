@@ -1,6 +1,6 @@
 {
     "name": "matriphe/bendera",
-    "description": "Convert country code (ISO 3166-1 alpha-2) to the corresponding flag emoji",
+    "description": "Laravel package to convert country code (ISO 3166-1 alpha-2) to the corresponding flag emoji",
     "keywords": ["laravel", "flag", "country", "iso-3166-1 alpha-2", "converter", "emoji"],
     "type": "library",
     "license": "MIT",
