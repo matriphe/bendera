@@ -1,6 +1,6 @@
 # Bendera
 
-[![Build](https://github.com/matriphe/bendera/actions/workflows/php.yml/badge.svg)](https://github.com/matriphe/bendera/actions/workflows/php.yml)
+[![Run Tests](https://github.com/matriphe/bendera/actions/workflows/run-tests.yml/badge.svg)](https://github.com/matriphe/bendera/actions/workflows/run-tests.yml)
 [![Latest Stable Version](https://poser.pugx.org/matriphe/bendera/v)](//packagist.org/packages/matriphe/bendera)
 [![Total Downloads](https://poser.pugx.org/matriphe/bendera/downloads)](//packagist.org/packages/matriphe/bendera)
 
