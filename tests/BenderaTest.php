@@ -2,13 +2,16 @@
 
 namespace Matriphe\Bendera\Tests;
 
-use Matriphe\Bendera\Bendera;
+use Matriphe\Bendera\BenderaFactory;
 use PHPUnit\Framework\TestCase;
 use Stidges\CountryFlags\CountryFlag;
 
 class BenderaTest extends TestCase
 {
-    public function benderaData()
+    /**
+     * @return array[]
+     */
+    public function benderaData(): array
     {
         return [
             'ID mapped correctly' => [
@@ -37,14 +40,17 @@ class BenderaTest extends TestCase
     /**
      * @dataProvider benderaData
      *
-     * @param $aliases
-     * @param $country
-     * @param $emoji
+     * @param  array  $aliases
+     * @param  string  $country
+     * @param  string|null  $emoji
      */
-    public function testBenderaReturnsEmojiCorrectly($aliases, $country, $emoji)
-    {
+    public function testBenderaReturnsEmojiCorrectly(
+        array $aliases,
+        string $country,
+        ?string $emoji
+    ) {
         $countryFlag = new CountryFlag($aliases);
-        $bendera = new Bendera($countryFlag);
+        $bendera = new BenderaFactory($countryFlag);
 
         $this->assertEquals($emoji, $bendera->emoji($country));
     }
