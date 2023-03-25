@@ -3,91 +3,50 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  run-tests-php-8-1:
+  laravel-10:
     name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        php: [8.1]
-        laravel: [9.*, 10.*]
-        dependency-version: [prefer-lowest, prefer-stable]
-        include:
-          - laravel: 10.*
-            testbench: 8.*
-          - laravel: 9.*
-            testbench: 7.*
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '8.1' ]
+        laravel-versions: [ '^10.0' ]
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - uses: matriphe/laravel-pkg-test-action@v2
         with:
-          php-version: ${{ matrix.php }}
-          coverage: none
-
-      - name: Cache composer packages
-        id: composer-cache
-        uses: actions/cache@v2
-        with:
-          path: vendor
-          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-php-
-
-      - name: Install dependencies
-        run: |
-          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+          operating_system: ${{ matrix.operating-system }}
+          php_version: ${{ matrix.php-versions }}
+          laravel_version: ${{ matrix.laravel-versions }}
+          phpunit_args: --group unit
+          laravel_install_args: --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-plugins
+          package_install_args: --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-plugins
 
       - name: Execute tests
         run: composer test
 
 
-  run-tests-php-8-0:
+  laravel-9-older:
     name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest]
-        php: [8.0]
-        laravel: [7.*, 8.*, 9.*]
-        dependency-version: [prefer-lowest, prefer-stable]
-        include:
-          - laravel: 9.*
-            testbench: 7.*
-          - laravel: 8.*
-            testbench: 6.*
-          - laravel: 7.*
-            testbench: 5.*
+        operating-system: [ ubuntu-latest ]
+        php-versions: [ '8.0' ]
+        laravel-versions: [ '^7.0', '^8.0', '^9.0', '^10.0' ]
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - uses: matriphe/laravel-pkg-test-action@v2
+        with:
+          operating_system: ${{ matrix.operating-system }}
+          php_version: ${{ matrix.php-versions }}
+          laravel_version: ${{ matrix.laravel-versions }}
+          phpunit_args: --group unit
+          laravel_install_args: --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-plugins --ignore-platform-req=php+
+          package_install_args: --prefer-dist --no-progress --no-suggest --optimize-autoloader --no-plugins --ignore-platform-req=php+
+          branch: 0.3.0
 
-    - name: Setup PHP
-      uses: shivammathur/setup-php@v2
-      with:
-        php-version: ${{ matrix.php }}
-        coverage: none
-
-    - name: Cache composer packages
-      id: composer-cache
-      uses: actions/cache@v2
-      with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
-
-    - name: Install dependencies
-      run: |
-        composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
-        composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
-
-    - name: Execute tests
-      run: composer test
+      - name: Execute tests
+        run: composer test
