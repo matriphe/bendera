@@ -12,7 +12,7 @@ class FacadeTest extends TestCase
     /**
      * @return array[]
      */
-    public function benderaData()
+    public static function benderaData()
     {
         return [
             'ID mapped correctly' => [
@@ -47,7 +47,7 @@ class FacadeTest extends TestCase
     public function testBenderaFacadeReturnsEmojiCorrectly(
         string $country,
         ?string $emoji
-    ) {
+    ): void {
         $this->assertEquals($emoji, BenderaFacade::emoji($country));
     }
 
