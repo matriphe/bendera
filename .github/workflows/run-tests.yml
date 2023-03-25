@@ -35,7 +35,7 @@ jobs:
       matrix:
         operating-system: [ ubuntu-latest ]
         php-versions: [ '8.0' ]
-        laravel-versions: [ '^7.0', '^8.0', '^9.0', '^10.0' ]
+        laravel-versions: [ '^7.0', '^8.0', '^9.0' ]
 
     steps:
       - uses: matriphe/laravel-pkg-test-action@v2
