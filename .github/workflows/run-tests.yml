@@ -5,7 +5,7 @@ on: [push, pull_request]
 jobs:
   laravel-10:
     name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
       matrix:
@@ -29,7 +29,7 @@ jobs:
 
   laravel-9-older:
     name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.operating-system }}
     strategy:
       fail-fast: false
       matrix:
