@@ -11,7 +11,7 @@ class BenderaTest extends TestCase
     /**
      * @return array[]
      */
-    public function benderaData(): array
+    public static function benderaData(): array
     {
         return [
             'ID mapped correctly' => [
@@ -48,7 +48,7 @@ class BenderaTest extends TestCase
         array $aliases,
         string $country,
         ?string $emoji
-    ) {
+    ): void {
         $countryFlag = new CountryFlag($aliases);
         $bendera = new BenderaFactory($countryFlag);
 
