@@ -14,8 +14,16 @@ This packages wraps [Country Flags](https://github.com/stidges/country-flags) an
 
 You can install the package via composer:
 
+### Laravel 10
+
 ```shell
 composer require matriphe/bendera
+```
+
+### Laravel 9 or Older
+
+```shell
+composer require matriphe/bendera:0.3.0
 ```
 
 ## Configuration
