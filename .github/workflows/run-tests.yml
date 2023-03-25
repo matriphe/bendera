@@ -3,7 +3,51 @@ name: Run Tests
 on: [push, pull_request]
 
 jobs:
-  run-tests:
+  run-tests-php-8-1:
+    name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: [8.1]
+        laravel: [9.*, 10.*]
+        dependency-version: [prefer-lowest, prefer-stable]
+        include:
+          - laravel: 10.*
+            testbench: 8.*
+          - laravel: 9.*
+            testbench: 7.*
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+
+      - name: Cache composer packages
+        id: composer-cache
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+
+      - name: Install dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" "orchestra/testbench:${{ matrix.testbench }}" --no-interaction --no-update
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-suggest
+
+      - name: Execute tests
+        run: composer test
+
+
+  run-tests-php-8-0:
     name: Laravel/${{ matrix.laravel }} PHP/${{ matrix.php }} @${{ matrix.dependency-version }} ${{ matrix.operating-system }}
     runs-on: ${{ matrix.os }}
     strategy:
