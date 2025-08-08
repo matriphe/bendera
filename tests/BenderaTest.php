@@ -3,6 +3,7 @@
 namespace Matriphe\Bendera\Tests;
 
 use Matriphe\Bendera\BenderaFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Stidges\CountryFlags\CountryFlag;
 
@@ -15,24 +16,24 @@ class BenderaTest extends TestCase
     {
         return [
             'ID mapped correctly' => [
-                'aliases' => [],
-                'country' => 'ID',
-                'emoji' => '🇮🇩',
+                [], // aliases
+                'ID', // country
+                '🇮🇩', // emoji
             ],
             'UK mapped to UK code' => [
-                'aliases' => [],
-                'country' => 'UK',
-                'emoji' => '🇺🇰',
+                [], // aliases
+                'UK', // country
+                '🇺🇰', // emoji
             ],
             'UK mapped to GB' => [
-                'aliases' => ['uk' => 'gb'],
-                'country' => 'UK',
-                'emoji' => '🇬🇧',
+                ['uk' => 'gb'], // aliases
+                'UK', // country
+                '🇬🇧', // emoji
             ],
             'invalid country return null' => [
-                'aliases' => [],
-                'country' => 'XYZ',
-                'emoji' => null,
+                [], // aliases
+                'XYZ', // country
+                null, // emoji
             ],
         ];
     }
@@ -44,6 +45,7 @@ class BenderaTest extends TestCase
      * @param  string  $country
      * @param  string|null  $emoji
      */
+    #[DataProvider('benderaData')]
     public function testBenderaReturnsEmojiCorrectly(
         array $aliases,
         string $country,
