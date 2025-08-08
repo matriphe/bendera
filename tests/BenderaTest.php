@@ -3,6 +3,7 @@
 namespace Matriphe\Bendera\Tests;
 
 use Matriphe\Bendera\BenderaFactory;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 use Stidges\CountryFlags\CountryFlag;
 
@@ -44,6 +45,7 @@ class BenderaTest extends TestCase
      * @param  string  $country
      * @param  string|null  $emoji
      */
+    #[DataProvider('benderaData')]
     public function testBenderaReturnsEmojiCorrectly(
         array $aliases,
         string $country,

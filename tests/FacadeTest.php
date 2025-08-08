@@ -5,6 +5,7 @@ namespace Matriphe\Bendera\Tests;
 use Illuminate\Foundation\Application;
 use Matriphe\Bendera\BenderaFacade;
 use Matriphe\Bendera\BenderaServiceProvider;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Orchestra\Testbench\TestCase;
 
 class FacadeTest extends TestCase
@@ -44,6 +45,7 @@ class FacadeTest extends TestCase
      * @param  string  $country
      * @param  string|null  $emoji
      */
+    #[DataProvider('benderaData')]
     public function testBenderaFacadeReturnsEmojiCorrectly(
         string $country,
         ?string $emoji
